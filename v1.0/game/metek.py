@@ -5,7 +5,8 @@ from . import neMeteor
 class Metek(neMeteor.NeMeteor):
     def __init__ (self, *args,**kwargs):
         super().__init__(*args, **kwargs)
-        self.vy = 400        
+        self.vy = 400
+        self.tip = "Metek"
 
     def update(self, dt):
         super().update(dt)
