@@ -37,15 +37,15 @@ class Raketa(neMeteor.NeMeteor):
         super().collision(other)
         
     def strel(self):
-        tmp = metek.Metek(pyglet.resource.image('bull2.png'), batch = main_batch)
+        tmp = metek.Metek(pyglet.resource.image('bull2.png'), batch = self.main_batch)
         tmp.x = self.x + self.width//2-2
         tmp.y = self.height
-        metek_list.append(tmp)
+        game.metek_list.append(tmp)
 
     def zabij(self):
         gameover.game_over = True
-        metek_list = []
-        meteorji_list = []
+        game.metek_list = []
+        game.meteorji_list = []
 
 
                         

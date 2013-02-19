@@ -1,4 +1,5 @@
 import pyglet
+from .screen import *
 
 
 class Gumb(pyglet.sprite.Sprite):
@@ -8,8 +9,13 @@ class Gumb(pyglet.sprite.Sprite):
 
 
     def klik(self, x, y):
-        if(self.x<x and self.x+self.width>x and self.y<y and self.y+self.height>y):
-            print("True")
+        #print("klik")
+        if(self.x - self.width/2 <= x and self.x+self.width/2 >= x and self.y - self.height/2 <= y and self.y+self.height/2 >= y):
+            print(self.name)
+            if(self.name == "Exit"):
+                window.close()
+            elif(self.name == "Retry"):
+                game.restart()
             return(True)
         else:
             return(False)

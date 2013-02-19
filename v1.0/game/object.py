@@ -22,7 +22,7 @@ class Object(pyglet.sprite.Sprite):
     def brisanje(self):
        # print("brisem se!!!!")
         if(self.tip=='Meteor'):
-            meteorji_list.remove(self)
+            game.meteorji_list.remove(self)
         if(self.tip=='Metek'):
-            metek_list.remove(self)
+            game.metek_list.remove(self)
             

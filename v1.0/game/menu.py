@@ -10,14 +10,15 @@ class Menu():
         #gumb=gumb.Gumb
         self.buttons = []
         self.buttonsBatch = pyglet.graphics.Batch()
-
+        
+        self.labels = []
 
     def draw(self):
         self.buttonsBatch.draw()
 
-    def preveriKlike(self):
+    def preveriKlike(self, x, y):
         for i in self.buttons:
-            i.klik()
+            i.klik(x, y)
 
     def addButton(self):
         pass
