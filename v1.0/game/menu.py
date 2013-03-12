@@ -17,6 +17,7 @@ class Menu():
         self.buttonsBatch.draw()
 
     def preveriKlike(self, x, y):
+        #print("preverjam")
         for i in self.buttons:
             i.klik(x, y)
 

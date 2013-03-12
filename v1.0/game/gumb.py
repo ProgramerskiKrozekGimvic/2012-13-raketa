@@ -1,11 +1,12 @@
 import pyglet
 from .screen import *
-
+from . import gameover
 
 class Gumb(pyglet.sprite.Sprite):
-    def __init__ (self, *args, name = "Gumb", **kwargs):
+    def __init__ (self, game, *args, name = "Gumb", **kwargs):
         super().__init__(*args, **kwargs)
         self.name = name
+        self.game = game
 
 
     def klik(self, x, y):
@@ -15,7 +16,12 @@ class Gumb(pyglet.sprite.Sprite):
             if(self.name == "Exit"):
                 window.close()
             elif(self.name == "Retry"):
-                game.restart()
+                self.game.myInit()
+            elif(self.name == "Main Menu"):
+                self.game.start()
+                gameover.start = True
+            elif(self.name == "Start"):
+                self.game.myInit()
             return(True)
         else:
             return(False)

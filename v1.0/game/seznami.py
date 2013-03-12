@@ -1,5 +1,6 @@
-from . import game
+import pyglet
+from .igra import *
 
-game = game.Game()
+play = Game()
 
 

@@ -5,7 +5,7 @@ import pyglet
 from game.seznami import *
 from game.screen import *
 #from game import gameover
-#from game import game
+from game.igra import *
 
 
 #krneki=menu.MenuEnd()
@@ -15,39 +15,28 @@ from game.screen import *
 @window.event
 def on_draw():
     window.clear()
-    game.draw()
+    play.draw()
     #menu1.draw()
     #print(gameover.game_over)
     
 
 @window.event
 def on_mouse_press(x, y, button, modifiers):
-    game.mouse_press(x, y)
+    play.mouse_press(x, y)
     
 
 def update(dt):
-    game.update(dt)
+    play.update(dt)
              
-         
-
-
 def dodaj(dt):
-    game.dodaj()
-
-
-    
-
-
-
-
+    play.dodaj()
 
 
 if(__name__ == '__main__'):
-    
     pyglet.clock.schedule_interval(update, 1/120)
     #dodaj(0)
     pyglet.clock.schedule_interval(dodaj, 1)
-    #game = game.Game()
-    game.myInit()
+    #play = Game()
     pyglet.app.run()
     
+

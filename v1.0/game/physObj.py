@@ -3,8 +3,8 @@ from . import object
 
 
 class PhysObj(object.Object):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, game, *args, **kwargs):
+        super().__init__(game, *args, **kwargs)
         self.zabit = False
 
     def update(self, dt):

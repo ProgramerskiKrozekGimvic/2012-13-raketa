@@ -1,13 +1,14 @@
 import pyglet
-from .seznami import *
+from .igra import *
 from .screen import *
 
 class Object(pyglet.sprite.Sprite):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, game, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.vx = 0
         self.vy = 0
         self.tip = "Object"
+        self.game = game
 
     def update(self, dt):
         self.x += self.vx * dt
@@ -22,7 +23,8 @@ class Object(pyglet.sprite.Sprite):
     def brisanje(self):
        # print("brisem se!!!!")
         if(self.tip=='Meteor'):
-            game.meteorji_list.remove(self)
+            #print(meteorji_list)
+            self.game.meteorji_list.remove(self)
         if(self.tip=='Metek'):
-            game.metek_list.remove(self)
+            self.game.metek_list.remove(self)
             

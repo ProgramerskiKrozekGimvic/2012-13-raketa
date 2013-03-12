@@ -7,8 +7,8 @@ from . import gameover
 
 
 class Raketa(neMeteor.NeMeteor):
-    def __init__ (self, *args,**kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__ (self, game, *args,**kwargs):
+        super().__init__(game, *args, **kwargs)
         self.key_handler=key.KeyStateHandler()
         self.vx = 200
 
@@ -37,15 +37,15 @@ class Raketa(neMeteor.NeMeteor):
         super().collision(other)
         
     def strel(self):
-        tmp = metek.Metek(pyglet.resource.image('bull2.png'), batch = self.main_batch)
+        tmp = metek.Metek(self, pyglet.resource.image('bull2.png'), batch = self.game.main_batch)
         tmp.x = self.x + self.width//2-2
         tmp.y = self.height
-        game.metek_list.append(tmp)
+        self.game.metek_list.append(tmp)
 
     def zabij(self):
         gameover.game_over = True
-        game.metek_list = []
-        game.meteorji_list = []
+        self.game.metek_list = []
+        self.game.meteorji_list = []
 
 
                         
