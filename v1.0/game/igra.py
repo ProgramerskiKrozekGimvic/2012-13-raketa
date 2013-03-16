@@ -43,8 +43,8 @@ class Game():
         tmp = pyglet.resource.image('gumb.png')
         tmp.anchor_x = tmp.width/2
         tmp.anchor_y = tmp.height/2
-        self.menu1.buttons.append(gumb.Gumb(self, tmp, name = "Retry", batch = self.menuEnd.buttonsBatch, x = window.width/2, y = window.height/2))
-        self.menu1.buttons.append(gumb.Gumb(self, tmp, name = "Main Menu", batch = self.menuEnd.buttonsBatch, x = window.width/2, y = window.height/2 - 80))
+        self.menuEnd.buttons.append(gumb.Gumb(self, tmp, name = "Retry", batch = self.menuEnd.buttonsBatch, x = window.width/2, y = window.height/2))
+        self.menuEnd.buttons.append(gumb.Gumb(self, tmp, name = "Main Menu", batch = self.menuEnd.buttonsBatch, x = window.width/2, y = window.height/2 - 80))
         for i in self.menuEnd.buttons[:]:
             napis  = pyglet.text.Label(text=i.name, font_size=20, x=i.x, y=i.y, bold = True, color=(0, 0, 255, 255), anchor_x = "center", anchor_y = "center")
             self.menuEnd.labels.append(napis)
