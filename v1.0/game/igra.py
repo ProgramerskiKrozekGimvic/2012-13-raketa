@@ -91,8 +91,12 @@ class Game():
             pass
 
     def dodaj(self):
-        tmp = meteor.Meteor(self, pyglet.resource.image('meteor2.png'), batch = self.main_batch)
-        tmp.x=random.randint(0, window.width-100)
+        x=random.randint(0,1)
+        if(x==1):
+            tmp = meteor.Meteor(self, pyglet.resource.image('meteor2.png'), batch = self.main_batch)
+        else:
+            tmp = meteor.Meteor(self, pyglet.resource.image('meteor1.png'), batch = self.main_batch)
+        tmp.x=random.randint(0, window.width-tmp.width)
         tmp.y=window.height
         tmp.vy = random.randint(-150, -50)
         self.meteorji_list.append(tmp)
