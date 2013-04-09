@@ -194,7 +194,10 @@ class Game:
                     gameover.afterPause = False
         #printa score
         if(gameover.game_over == True):
-            print(self.score)
+            #print(self.score)
+            napis = pyglet.text.Label(text=str(self.score), font_size=30, x=, y=, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            self.menuEnd.labels.append(napis)
+            
             
         
     def dodaj(self):
