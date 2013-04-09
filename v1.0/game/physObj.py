@@ -17,7 +17,7 @@ class PhysObj(object.Object):
 
 
     def zabij(self):
+        #if(self.tip = "Meteor" and self.velikost = "v"):
         self.brisanje()
         self.zabit = True
-
-    
+        #self.score += 20

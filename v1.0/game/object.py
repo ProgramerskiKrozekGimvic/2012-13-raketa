@@ -24,7 +24,14 @@ class Object(pyglet.sprite.Sprite):
        # print("brisem se!!!!")
         if(self.tip=='Meteor'):
             #print(meteorji_list)
-            self.game.meteorji_list.remove(self)
+            try:
+                self.game.meteorji_list.remove(self)
+            except ValueError:
+                pass
+                
         if(self.tip=='Metek'):
-            self.game.metek_list.remove(self)
+            try:
+                self.game.metek_list.remove(self)
+            except ValueError:
+                pass
             

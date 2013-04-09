@@ -35,7 +35,7 @@ def dodaj(dt):
 if(__name__ == '__main__'):
     pyglet.clock.schedule_interval(update, 1/120)
     #dodaj(0)
-    pyglet.clock.schedule_interval(dodaj, 1)
+    #pyglet.clock.schedule_once(dodaj, 1)
     #play = Game()
     pyglet.app.run()
     

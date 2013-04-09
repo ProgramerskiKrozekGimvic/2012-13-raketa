@@ -19,9 +19,25 @@ class Gumb(pyglet.sprite.Sprite):
                 self.game.myInit()
             elif(self.name == "Main Menu"):
                 self.game.start()
+                gameover.pause = False
+                gameover.options = False
                 gameover.start = True
             elif(self.name == "Start"):
                 self.game.myInit()
+            elif(self.name == "Restart"):
+                self.game.myInit()
+                gameover.pause = False
+            elif(self.name == "Resume"):
+                gameover.pause = False
+                gameover.afterPause = True
+                #pyglet.clock.schedule_once(seznami.play.dodaj, 3.1)
+            elif(self.name == "Options"):
+                gameover.start = False
+                gameover.options = True
+            elif(self.name == "Chose1"):
+                gameover.raketa = 1
+            elif(self.name == "Chose2"):
+                gameover.raketa = 2
             return(True)
         else:
             return(False)
