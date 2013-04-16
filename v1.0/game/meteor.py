@@ -16,15 +16,16 @@ class Meteor(physObj.PhysObj):
     def zabij(self):
         super().zabij()
         if(self.velikost=="v"):
-            x=random.randint(1,10)
+            x=random.randint(1,3)
             if(x==1):
                 self.split()
         #Za score.
-        if(self.zabit == True and self.velikost == "m"):
-            self.game.score += 20
-        elif(self.zabit == True and self.velikost == "v"):
-            self.game.score += 30
-           
+        if(self.game.raketa.zabit==False):
+            if(self.zabit == True and self.velikost == "m"):
+                self.game.score += 20
+            elif(self.zabit == True and self.velikost == "v"):
+                self.game.score += 30
+        self.game.raketa.zabit=False
 
     def split(self):
         for i in range (2):

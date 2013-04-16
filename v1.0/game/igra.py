@@ -7,7 +7,7 @@ from game import menu, raketa, gumb, meteor, gameover
 class Game:
 
     def start(self):
-        self.vy_scale=1.05
+        self.vy_scale=1.005
         self.dodaj_timerbase = 1
         self.dodaj_timer = self.dodaj_timerbase
         self.dodaj_scale = 0.997
@@ -78,6 +78,9 @@ class Game:
             self.menuPause.labels.append(napis)
 
     def myInit(self):
+        self.vy_base_min=-50
+        self.vy_base=-150
+        self.hp=2
         #pyglet.clock.schedule_once(self.dodaj, 1)
         gameover.start = False
         self.main_batch = pyglet.graphics.Batch()
@@ -89,7 +92,7 @@ class Game:
         
         self.menuEnd = menu.Menu()
         #menu2 = menu.Menu()
-        napis = pyglet.text.Label(text="Game over", font_size=50, x=75, y=350, bold = True, color=(250, 250, 0, 255))
+        napis = pyglet.text.Label(text="Game over", font_size=45, x=250, y=400, bold = True, color=(250, 250, 0, 255), anchor_x = "center", anchor_y = "center")
         napis.rotation = 50
         self.menuEnd.labels.append(napis)
         tmp = pyglet.resource.image('GNp.png')
@@ -103,7 +106,8 @@ class Game:
 
         self.raketa = raketa.Raketa(self, pyglet.resource.image('raketa1.png'), batch=self.main_batch)
         window.push_handlers(self.raketa.key_handler)
-
+        
+        
        # self.raketa2 = raketa.Raketa(self, pyglet.resource.image('raketa2.png'), batch=self.main_batch)
         #window.push_handlers(self.raketa2.key_handler)
         
@@ -112,6 +116,9 @@ class Game:
         self.score=0
         self.score_label = pyglet.text.Label(text=str(self.score), font_size=30, x=0, y=0, bold = True, color=(250, 250, 0, 255))
         self.score_timer = 1
+
+        self.life_raketa = pyglet.sprite.Sprite(pyglet.image.load("raketa1.png"), x = 500, y = 0)
+        self.life_raketa.scale = 0.5
         
     def __init__(self):
         self.start()
@@ -121,6 +128,12 @@ class Game:
             self.main_batch.draw()
             self.score_label.draw()
             #self.raketa2.draw()
+            self.life_raketa.x = 500
+            for i in range(0, self.hp):
+                #self.slika_rakete=pyglet.sprite.Sprite(pyglet.image.load("raketa1.png"), x = 500-(i*50), y = 0)
+                self.life_raketa.x -= 50 * self.life_raketa.scale
+                self.life_raketa.draw()
+
         elif(gameover.options):
             self.menuOptions.draw()
             self.slika1.blit(window.width/2-58, window.height/2)
@@ -174,14 +187,15 @@ class Game:
                 m.collision(self.raketa)
                 for i in self.metek_list[:]:
                     m.collision(i)
-            
+            #if(self.raketa.zabit==True):
+            #    self.raketa.zabit=False
             self.score_label.text = str(self.score)
             self.score_timerbase = 1
-            if(self.score_timer>0):
-                self.score_timer -=dt
-            else:
-                self.score_timer=self.score_timerbase
-                self.score += 10
+            #if(self.score_timer>0):
+            #    self.score_timer -=dt
+            #else:
+            #    self.score_timer=self.score_timerbase
+            #    self.score += 10
         
         else:
             self.dodaj_timerbase = 1
@@ -195,7 +209,7 @@ class Game:
         #printa score
         if(gameover.game_over == True):
             #print(self.score)
-            napis = pyglet.text.Label(text=str(self.score), font_size=30, x=, y=, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
+            napis = pyglet.text.Label(text=str(self.score), font_size=30, x=250, y=350, bold = True, color=(250, 250, 0, 150), anchor_x = "center", anchor_y = "center")
             self.menuEnd.labels.append(napis)
             
             
@@ -211,7 +225,10 @@ class Game:
             tmp.velikost="m"
         tmp.x=random.randint(0, window.width-tmp.width)
         tmp.y=window.height
-        tmp.vy = random.randint(-150, -50)* self.vy_scale
+        #tmp.vy = random.randint(int(round(self.vy_base, 0)), int(round(self.vy_base_min, 0))
+        tmp.vy = self.vy_base + random.random()*(self.vy_base_min - self.vy_base)
+        self.vy_base = self.vy_base*self.vy_scale
+        self.vy_base_min *= self.vy_scale
         self.meteorji_list.append(tmp)
         """
         if(not gameover.game_over and not gameover.start and not gameover.afterPause and not gameover.pause):

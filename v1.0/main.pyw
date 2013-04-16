@@ -33,6 +33,7 @@ def dodaj(dt):
 
 
 if(__name__ == '__main__'):
+    #pyglet.gl.glClearColor(0.2, 0.2, 0.8, 1)
     pyglet.clock.schedule_interval(update, 1/120)
     #dodaj(0)
     #pyglet.clock.schedule_once(dodaj, 1)

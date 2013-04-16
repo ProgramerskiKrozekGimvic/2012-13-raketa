@@ -44,10 +44,22 @@ class Raketa(neMeteor.NeMeteor):
         tmp.y = self.height
         self.game.metek_list.append(tmp)
 
-    def zabij(self):
-        gameover.game_over = True
-        self.game.metek_list = []
-        self.game.meteorji_list = []
+#    def zabij(self):
+#        gameover.game_over = True
+#        self.game.metek_list = []
+#        self.game.meteorji_list = []
 
-
+    def life(self):
+        if(self.game.hp==0):
+            self.brisanje()
+            self.zabit = True
+            gameover.game_over = True
+            self.game.meteorji_list=[]
+            self.game.metek_list=[]
+        else:
+            self.zabit = True
+            self.game.hp -= 1
+            self.game.meteorji_list=[]
+            self.game.metek_list=[]
+            
                         
